@@ -2,6 +2,7 @@ import diff from './diff'
 
 /**
  * render 方法将 virtualDOM 转换为 真实DOM
+ * 开放给框架的使用者调用
  * @param virtualDOM virtualDOM 对象
  * @param container DOM容器，一般为 div#root
  * @param oldDOM 旧的DOM

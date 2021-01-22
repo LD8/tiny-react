@@ -16,9 +16,21 @@ const virtualDOM = (
     <button onClick={() => alert('你好')}>点击我</button>
     <h3>这个将会被删除</h3>
     2, 3
+    <input type="text" value="13" />
   </div>
 )
 
-TinyReact.render(virtualDOM, root)
+// 将 virtualDOM 转换为 真实DOM，然后挂载到 div#root
+// TinyReact.render(virtualDOM, root)
 
-console.log(virtualDOM)
+function Demo(props) {
+  return <h1>&hearts; {props.title}</h1>
+}
+
+function Heart(props) {
+  return <Demo title={props.title} />
+}
+
+TinyReact.render(<Heart title="Hello React" />, root)
+
+// console.log(virtualDOM)
