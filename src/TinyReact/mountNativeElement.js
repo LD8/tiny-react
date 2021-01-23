@@ -11,10 +11,12 @@ export default function mountNativeElement(virtualDOM, container, oldDOM) {
   let newElement = createDOMElement(virtualDOM)
   // 判断旧的DOM对象是否存在，如果存在，删除
   if (oldDOM) {
+    container.insertBefore(newElement, oldDOM)
     unmountNode(oldDOM)
+  } else {
+    // 将转换之后的DOM对象挂载到页面中
+    container.appendChild(newElement)
   }
-  // 将转换之后的DOM对象挂载到页面中
-  container.appendChild(newElement)
 
   let component = virtualDOM.component
   if (component) {
