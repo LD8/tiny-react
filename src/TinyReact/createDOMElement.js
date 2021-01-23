@@ -16,9 +16,18 @@ export default function createDOMElement(virtualDOM) {
     // 为元素添加属性
     updateNodeElement(newElement, virtualDOM)
   }
+
+  // 为了在 DOM diff 对比中获取虚拟DOM，在挂在前就将该元素的虚拟DOM存储起来
+  newElement._virtualDOM = virtualDOM
+
   // 递归创建子节点
   virtualDOM.children.forEach((child) => {
     mountElement(child, newElement)
   })
+
+  // 把新建的对象挂载到 props.ref
+  if (virtualDOM.props && virtualDOM.props.ref) {
+    virtualDOM.props.ref(newElement)
+  }
   return newElement
 }
